@@ -1,5 +1,7 @@
 package tabuleiro;
 
+//Classe "Posição"
+
 public class Posicao {
 
 	private int linha;
