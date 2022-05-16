@@ -1,10 +1,13 @@
 package aplicacao;
 
+import xadrez.PartidaDeXadrez;
+
 public class Programa {
 
 	public static void main(String[] args) {
-		
-		System.out.println("Primeiros passos do game!");
+		//Testando impressão do tabuleiro.
+		PartidaDeXadrez partidadexadrez = new PartidaDeXadrez();
+		UI.printTabuleiro(partidadexadrez.getPecas());
 	}
 
 }
