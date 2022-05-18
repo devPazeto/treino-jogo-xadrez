@@ -10,7 +10,7 @@ public class Tabuleiro {
 	public Tabuleiro (int linhas, int colunas){
 		this.linhas=linhas;
 		this.colunas=colunas;
-		// Instaciando a matriz com linhas e colunas
+		// Instanciando a matriz com linhas e colunas
 		pecas = new Peca[linhas][colunas];
 	}
 
@@ -36,5 +36,13 @@ public class Tabuleiro {
 	
 	public Peca peca(Posicao posicao) {
 		return pecas[posicao.getLinha()][posicao.getColuna()];
+	}
+	
+	//Método vai na matriz de peças na linha e na coluna e atribui a peça que veio como argumento.
+	public void lugarDaPeca(Peca peca, Posicao posicao) {
+		pecas [posicao.getLinha()][posicao.getColuna()] = peca;
+//Só e possivel acessar a posicão da peça diretamente pela referencia a baixo porque o atributo posição está como protected na classe "Peca"
+//Que é do mesmo pacote.
+		peca.posicao = posicao;
 	}
 }

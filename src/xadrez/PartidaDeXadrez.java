@@ -1,6 +1,9 @@
 package xadrez;
 
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.pecas.Rei;
+import xadrez.pecas.Torre;
 
 public class PartidaDeXadrez {
 
@@ -8,9 +11,10 @@ public class PartidaDeXadrez {
 	
 	public PartidaDeXadrez() {
 		tabuleiro = new Tabuleiro(8, 8);
+		setupInicial();
 	}
-	// Metodo para a matriz percorrer o tabuleiro e fazer um downcast de "peças" para peças de xadrez
-	//O programa esta sendo feito em camadas por isso não tera acesso a matriz de peças, somente de "Peças de xadrez"
+	// Método para a matriz percorrer o tabuleiro e fazer um downcast de "peças" para peças de xadrez.
+	//O programa está sendo feito em camadas por isso não tera acesso a matriz de peças, somente de "Peças de xadrez".
 	public PecaDeXadrez[][] getPecas(){
 		PecaDeXadrez [][] mat = new PecaDeXadrez[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 		for(int i=0; i<tabuleiro.getLinhas(); i++) {
@@ -20,5 +24,11 @@ public class PartidaDeXadrez {
 		}
 		return mat;
 	}
-	
+	//Método vai iniciar a partida posicionando as peças no tabuleiro.
+	public void setupInicial() {
+		tabuleiro.lugarDaPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(0, 0));
+		tabuleiro.lugarDaPeca(new Torre(tabuleiro, Cor.PRETO), new Posicao(7, 0));
+		tabuleiro.lugarDaPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(0, 4));
+		tabuleiro.lugarDaPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(7, 4));
+	}
 }
