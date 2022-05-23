@@ -44,12 +44,24 @@ public class Tabuleiro {
 		if (temUmaPeca(posicao)) {
 			throw new TabuleiroException("já existe uma peça na posição " + posicao);
 		}
-		pecas [posicao.getLinha()][posicao.getColuna()] = peca;
+		 pecas [posicao.getLinha()][posicao.getColuna()] = peca;
 //Só e possivel acessar a posicão da peça diretamente pela referencia a baixo porque o atributo posição está como protected na classe "Peca"
 //Que é do mesmo pacote.
 		peca.posicao = posicao;
 	}
 	
+	public Peca removerPeca(Posicao posicao) {
+		if (!posicaoExistente(posicao)) {
+			throw new TabuleiroException("já existe uma peça na posição ");
+		}
+		if (peca(posicao) == null) {
+			return null;
+		}
+		Peca aux = peca(posicao);
+		aux.posicao=null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
+	}
 //Método para testar se a posição existe.	
 	public boolean posicaoExistente(int linha, int coluna) {
 		return linha >=0 && linha < linhas && coluna >=0 && coluna < colunas;
