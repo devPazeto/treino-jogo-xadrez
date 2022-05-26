@@ -23,7 +23,7 @@ public class PosicaoXadrez {
 		return linha;
 	}
 
-	protected Posicao naPosicao() {
+	public Posicao naPosicao() {
 		return new Posicao(8 - linha, coluna - 'a');
 	}
 	
