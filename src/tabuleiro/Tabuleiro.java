@@ -9,7 +9,7 @@ public class Tabuleiro {
 	
 	public Tabuleiro (int linhas, int colunas){
 		if (linhas < 1 || colunas < 1) {
-			throw new TabuleiroException("Erro ao criar o tabuleiro: E necessario ter pelo menos 1 linha e 1 coluna" );
+			throw new TabuleiroException("Erro ao criar o tabuleiro: É necessário ter pelo menos 1 linha e 1 coluna" );
 		}
 		this.linhas=linhas;
 		this.colunas=colunas;
@@ -27,14 +27,14 @@ public class Tabuleiro {
 	
 	public Peca peca(int linha, int coluna) {
 		if (!posicaoExistente(linha, coluna)) {
-			throw new TabuleiroException("Nao existe essa posicao no tabuleiro" );
+			throw new TabuleiroException("Não existe essa posição no tabuleiro" );
 		}
 		return pecas [linha][coluna];
 	}
 	
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExistente(posicao)) {
-			throw new TabuleiroException("Nao existe essa posicao no tabuleiro" );
+			throw new TabuleiroException("Não existe essa posição no tabuleiro" );
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
@@ -42,7 +42,7 @@ public class Tabuleiro {
 	//Método vai na matriz de peças na linha e na coluna e atribui a peça que veio como argumento.
 	public void lugarDaPeca(Peca peca, Posicao posicao) {
 		if (temUmaPeca(posicao)) {
-			throw new TabuleiroException("ja existe uma peca na posicao " + posicao);
+			throw new TabuleiroException("já existe uma peça na posição " + posicao);
 		}
 		 pecas [posicao.getLinha()][posicao.getColuna()] = peca;
 //Só e possivel acessar a posicão da peça diretamente pela referencia a baixo porque o atributo posição está como protected na classe "Peca"
@@ -52,7 +52,7 @@ public class Tabuleiro {
 	
 	public Peca removerPeca(Posicao posicao) {
 		if (!posicaoExistente(posicao)) {
-			throw new TabuleiroException("ja existe uma peça na posicao ");
+			throw new TabuleiroException("já existe uma peça na posição ");
 		}
 		if (peca(posicao) == null) {
 			return null;
@@ -72,7 +72,7 @@ public class Tabuleiro {
 	
 	public boolean temUmaPeca(Posicao posicao) {
 		if (!posicaoExistente(posicao)) {
-			throw new TabuleiroException("Nao existe essa posicao no tabuleiro" );
+			throw new TabuleiroException("Não existe essa posição no tabuleiro" );
 		}
 		return peca(posicao) != null;
 	}

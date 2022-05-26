@@ -1,10 +1,11 @@
 package xadrez;
 
 import tabuleiro.Peca;
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
 //Classe Peça de xadrez que herda da classe peça.
-public class PecaDeXadrez extends Peca{
+public abstract class PecaDeXadrez extends Peca{
 	
 	private Cor cor;
 
@@ -17,5 +18,9 @@ public class PecaDeXadrez extends Peca{
 		return cor;
 	}
 
+	protected boolean existePecaAdversaria(Posicao posicao) {
+		PecaDeXadrez p = (PecaDeXadrez)getTabuleiro().peca(posicao);
+		return p != null && p.getCor() != cor;
+	}
 		
 }
