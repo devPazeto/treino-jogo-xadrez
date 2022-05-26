@@ -80,7 +80,7 @@ public class PartidaDeXadrez {
         colocaNovaPeca('d', 7, new Torre(tabuleiro, Cor.BLACK));
         colocaNovaPeca('e', 7, new Torre(tabuleiro, Cor.BLACK));
         colocaNovaPeca('e', 8, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('d', 8, new Rei(tabuleiro, Cor	.BLACK));
+        colocaNovaPeca('d', 8, new Rei(tabuleiro, Cor.BLACK));
 
 		
 	}
