@@ -8,12 +8,27 @@ import xadrez.pecas.Torre;
 
 public class PartidaDeXadrez {
 
+	private int turno;
+	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
+	
 	
 	public PartidaDeXadrez() {
 		tabuleiro = new Tabuleiro(8, 8);
+		turno = 1;
+		jogadorAtual = Cor.WHITE;
 		setupInicial();
 	}
+	
+	public int getTurno() {
+		return turno;
+	}
+	
+	public Cor getJogadorAtual() {
+		return jogadorAtual;
+	}
+	
+	
 	// Método para a matriz percorrer o tabuleiro e fazer um downcast de "peças" para peças de xadrez.
 	//O programa está sendo feito em camadas por isso não tera acesso a matriz de peças, somente de "Peças de xadrez".
 	public PecaDeXadrez[][] getPecas(){
@@ -38,6 +53,7 @@ public class PartidaDeXadrez {
 		validarPosicaoInicial(posicaoOrigem);
 		validarPosicaoFinal(posicaoOrigem, posicaoDestino);
 		Peca pecaCapturada = mover(posicaoOrigem, posicaoDestino);
+		proximoTurno();
 		return (PecaDeXadrez)pecaCapturada;
 	}
 	
@@ -52,6 +68,9 @@ public class PartidaDeXadrez {
 		if(!tabuleiro.temUmaPeca(posicao)) {
 			throw new XadrezException("Não existe peça na posicao de origem ");
 		}
+		if(jogadorAtual != ((PecaDeXadrez)tabuleiro.peca(posicao)).getCor()) {
+			throw new XadrezException("Essa peça não é sua ");
+		}
 		if(!tabuleiro.peca(posicao).existeMovimentoPossivel()) {
 			throw new XadrezException("Não existe movimentos possiveis para peça escolhida ");
 		}
@@ -63,6 +82,11 @@ public class PartidaDeXadrez {
 		}
 	}
 	
+	private void proximoTurno() {
+		turno++;
+		jogadorAtual = (jogadorAtual == Cor.WHITE) ? Cor.BLACK : Cor.WHITE;
+		
+	}
 	private void colocaNovaPeca(char coluna, int linha, PecaDeXadrez peca) {
 		tabuleiro.lugarDaPeca(peca, new PosicaoXadrez(coluna, linha).naPosicao());
 	}
