@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
@@ -191,10 +192,11 @@ public class PartidaDeXadrez {
 		colocaNovaPeca('h', 7, new Torre(tabuleiro, Cor.WHITE));
 		colocaNovaPeca('d', 1, new Torre(tabuleiro, Cor.WHITE));
 		colocaNovaPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('h', 1, new Peao(tabuleiro, Cor.WHITE));
 		
 		colocaNovaPeca('b', 8, new Torre(tabuleiro, Cor.BLACK));
         colocaNovaPeca('a', 8, new Rei(tabuleiro, Cor.BLACK));
-
+        colocaNovaPeca('a', 7, new Peao(tabuleiro, Cor.BLACK));
 	}
 
 	public boolean getCheckMate() {
