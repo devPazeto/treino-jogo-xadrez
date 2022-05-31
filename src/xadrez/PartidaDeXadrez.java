@@ -1,6 +1,5 @@
 package xadrez;
 
-import java.rmi.activation.ActivateFailedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +16,7 @@ public class PartidaDeXadrez {
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	private boolean check;
+	private boolean checkMate;
 	
 	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
 	private List<Peca> pecasCapturadas = new ArrayList<>();
@@ -38,7 +38,7 @@ public class PartidaDeXadrez {
 	
 	public boolean getCheck() {
 		return check;
-}
+    }
 	
 	
 	// Método para a matriz percorrer o tabuleiro e fazer um downcast de "peças" para peças de xadrez.
@@ -73,7 +73,12 @@ public class PartidaDeXadrez {
 		
 		check = (checagemTeste(oponente(jogadorAtual))) ? true : false;
 
+		if(checagemMate(oponente(jogadorAtual))) {
+			checkMate = true;
+		}
+		else {
 		proximoTurno();
+		}
 		
 		return (PecaDeXadrez)pecaCapturada;
 	}
@@ -150,27 +155,48 @@ public class PartidaDeXadrez {
 		}
 		return false;
 	}
+	
+	private boolean checagemMate(Cor cor) {
+		if (!checagemTeste(cor)) {
+			return false;
+		}
+		List<Peca> list = pecasNoTabuleiro.stream().filter(x ->((PecaDeXadrez)x).getCor()==cor).collect(Collectors.toList());
+		for (Peca p : list) {
+			boolean[][] mat = p.possiveisMovimentos();
+			for (int i=0; i<tabuleiro.getLinhas(); i++) {
+				for (int j=0; j<tabuleiro.getColunas(); j++) {
+					if(mat[i][j]) {
+						Posicao posicaoOrigem = ((PecaDeXadrez)p).getPosicaoXadrez().naPosicao();
+						Posicao posicaoDestino = new Posicao(i, j);
+						Peca pecaCapturada = mover(posicaoOrigem, posicaoDestino);
+						boolean checagemTeste = checagemTeste(cor);
+						desfazerMovimento(posicaoOrigem, posicaoDestino, pecaCapturada);
+						if(!checagemTeste) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
 	private void colocaNovaPeca(char coluna, int linha, PecaDeXadrez peca) {
 		tabuleiro.lugarDaPeca(peca, new PosicaoXadrez(coluna, linha).naPosicao());
 	    pecasNoTabuleiro.add(peca);
 	}
 	//Método vai iniciar a partida posicionando as peças no tabuleiro.
 	public void setupInicial() {
-		colocaNovaPeca('c', 1, new Torre(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('c', 2, new Torre(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('d', 2, new Torre(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('e', 2, new Torre(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('e', 1, new Torre(tabuleiro, Cor.WHITE));
-        colocaNovaPeca('d', 1, new Rei(tabuleiro, Cor.WHITE));
-
-        colocaNovaPeca('c', 7, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('c', 8, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('d', 7, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('e', 7, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('e', 8, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('d', 8, new Rei(tabuleiro, Cor.BLACK));
+		colocaNovaPeca('h', 7, new Torre(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('d', 1, new Torre(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
+		
+		colocaNovaPeca('b', 8, new Torre(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('a', 8, new Rei(tabuleiro, Cor.BLACK));
 
 	}
 
+	public boolean getCheckMate() {
+		return checkMate;
+	}
 		
 }
