@@ -8,6 +8,7 @@ import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.pecas.Bispo;
+import xadrez.pecas.Cavalo;
 import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -190,18 +191,38 @@ public class PartidaDeXadrez {
 	}
 	//Método vai iniciar a partida posicionando as peças no tabuleiro.
 	public void setupInicial() {
-		colocaNovaPeca('h', 7, new Torre(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('d', 1, new Torre(tabuleiro, Cor.WHITE));
+	
+		colocaNovaPeca('a', 1, new Torre(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('b', 1, new Cavalo(tabuleiro, Cor.WHITE));
 		colocaNovaPeca('c', 1, new Bispo(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('f', 1, new Bispo(tabuleiro, Cor.WHITE));
 		colocaNovaPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
-		colocaNovaPeca('h', 1, new Peao(tabuleiro, Cor.WHITE));
-		
-		colocaNovaPeca('c', 8, new Bispo(tabuleiro, Cor.BLACK));
-		colocaNovaPeca('f', 8, new Bispo(tabuleiro, Cor.BLACK));
-		colocaNovaPeca('b', 8, new Torre(tabuleiro, Cor.BLACK));
-        colocaNovaPeca('a', 8, new Rei(tabuleiro, Cor.BLACK));
+		colocaNovaPeca('f', 1, new Bispo(tabuleiro,Cor.WHITE));
+		colocaNovaPeca('g', 1, new Cavalo(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('h', 1, new Torre(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('a', 2, new Peao(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('b', 2, new Peao(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('c', 2, new Peao(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('d', 2, new Peao(tabuleiro, Cor.WHITE));
+		colocaNovaPeca('e', 2, new Peao(tabuleiro, Cor.WHITE));
+        colocaNovaPeca('f', 2, new Peao(tabuleiro, Cor.WHITE));
+        colocaNovaPeca('g', 2, new Peao(tabuleiro, Cor.WHITE));
+        colocaNovaPeca('h', 2, new Peao(tabuleiro, Cor.WHITE));
+
+        colocaNovaPeca('a', 8, new Torre(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('b', 8, new Cavalo(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('c', 8, new Bispo(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('e', 8, new Rei(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('f', 8, new Bispo(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('g', 8, new Cavalo(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('h', 8, new Torre(tabuleiro, Cor.BLACK));
         colocaNovaPeca('a', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('b', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('c', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('d', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('e', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('f', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('g', 7, new Peao(tabuleiro, Cor.BLACK));
+        colocaNovaPeca('h', 7, new Peao(tabuleiro, Cor.BLACK));
 	}
 
 	public boolean getCheckMate() {
