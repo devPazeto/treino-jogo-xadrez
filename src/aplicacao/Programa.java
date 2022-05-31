@@ -34,6 +34,7 @@ public class Programa {
 				PosicaoXadrez posicaoDestino = UI.lerPosicaoUsuario(sc);
 				
 				PecaDeXadrez pecaCapturada = partidaDeXadrez.executaMovimento(posicaoOrigem, posicaoDestino);
+				
 				if(pecaCapturada != null) {
 					capturado.add(pecaCapturada);
 				}

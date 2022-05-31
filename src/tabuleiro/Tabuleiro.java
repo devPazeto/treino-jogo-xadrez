@@ -44,7 +44,7 @@ public class Tabuleiro {
 		if (temUmaPeca(posicao)) {
 			throw new TabuleiroException("já existe uma peça na posição " + posicao);
 		}
-		 pecas [posicao.getLinha()][posicao.getColuna()] = peca;
+		 pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 //Só e possivel acessar a posicão da peça diretamente pela referencia a baixo porque o atributo posição está como protected na classe "Peca"
 //Que é do mesmo pacote.
 		peca.posicao = posicao;
